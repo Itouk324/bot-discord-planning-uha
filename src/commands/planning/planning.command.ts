@@ -40,7 +40,7 @@ export const execute: CommandExecute = async (command) => {
         let value = "";
         value += `Sujet: ${lesson.subject.name}\n`;
         value += `Professeur: ${TEACHERS[lesson.teacher]}\n`;
-        value += `Salle: ${ROOMS[lesson.room]}\n`;
+        value += `${ROOMS[lesson.room]}\n`;
 
         const [startHour, startMinute] = lesson.hour.split(" - ")[0].split("h").map(Number);
         const [endHour, endMinute] = lesson.hour.split(" - ")[1].split("h").map(Number);
