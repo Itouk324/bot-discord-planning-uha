@@ -66,6 +66,7 @@ type Lesson = {
   id: string;
 
   module: Module;
+  subject: Subject;
 
   teacher: Teacher;
   room: Room;

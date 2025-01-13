@@ -1,15 +1,15 @@
-import { HOURS, MODULES } from "./consts";
-import { Lesson } from "./types";
+import { HOURS, Lesson, MODULES } from "./consts";
 
 type DayLessons = {
   [key: string]: Lesson[];
 };
 
-const JANUARY_LESSONS: DayLessons = {
+export const JANUARY_LESSONS: DayLessons = {
   "06/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -17,7 +17,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -27,7 +28,8 @@ const JANUARY_LESSONS: DayLessons = {
   "07/01/2025": [
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.RESEAUX!.id,
+      id: "1.2",
+      subject: MODULES.CULTURE_INFO.subjects.RESEAUX!,
       module: MODULES.CULTURE_INFO,
       teacher: "DOLL",
       room: "Room 7",
@@ -35,7 +37,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.RESEAUX!.id,
+      id: "1.2",
+      subject: MODULES.CULTURE_INFO.subjects.RESEAUX!,
       module: MODULES.CULTURE_INFO,
       teacher: "DOLL",
       room: "Room 7",
@@ -45,7 +48,8 @@ const JANUARY_LESSONS: DayLessons = {
   "08/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.GRAPHISME!.id,
+      id: "2.2",
+      subject: MODULES.DEV_WEB.subjects.GRAPHISME!,
       module: MODULES.DEV_WEB,
       teacher: "NAAS",
       room: "Room 7",
@@ -53,7 +57,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.GRAPHISME!.id,
+      id: "2.2",
+      subject: MODULES.DEV_WEB.subjects.GRAPHISME!,
       module: MODULES.DEV_WEB,
       teacher: "NAAS",
       room: "Room 7",
@@ -63,7 +68,8 @@ const JANUARY_LESSONS: DayLessons = {
   "09/01/2025": [
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.RESEAUX!.id,
+      id: "1.2",
+      subject: MODULES.CULTURE_INFO.subjects.RESEAUX!,
       module: MODULES.CULTURE_INFO,
       teacher: "DOLL",
       room: "Room 7",
@@ -71,7 +77,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.RESEAUX!.id,
+      id: "1.2",
+      subject: MODULES.CULTURE_INFO.subjects.RESEAUX!,
       module: MODULES.CULTURE_INFO,
       teacher: "DOLL",
       room: "Room 7",
@@ -81,7 +88,8 @@ const JANUARY_LESSONS: DayLessons = {
   "10/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.JS!.id,
+      id: "2.3",
+      subject: MODULES.DEV_WEB.subjects.JS!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -89,7 +97,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.JS!.id,
+      id: "2.3",
+      subject: MODULES.DEV_WEB.subjects.JS!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -99,7 +108,8 @@ const JANUARY_LESSONS: DayLessons = {
   "13/01/2025": [
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.RESEAUX!.id,
+      id: "1.2",
+      subject: MODULES.CULTURE_INFO.subjects.RESEAUX!,
       module: MODULES.CULTURE_INFO,
       teacher: "DOLL",
       room: "Room 7",
@@ -107,7 +117,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.RESEAUX!.id,
+      id: "1.2",
+      subject: MODULES.CULTURE_INFO.subjects.RESEAUX!,
       module: MODULES.CULTURE_INFO,
       teacher: "DOLL",
       room: "Room 7",
@@ -117,7 +128,8 @@ const JANUARY_LESSONS: DayLessons = {
   "14/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -125,7 +137,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -135,7 +148,8 @@ const JANUARY_LESSONS: DayLessons = {
   "15/01/2025": [
     {
       name: MODULES.COMM.name,
-      id: MODULES.COMM.subjects.ANGLAIS!.id,
+      id: "5.4",
+      subject: MODULES.COMM.subjects.ANGLAIS!,
       module: MODULES.COMM,
       teacher: "VETTER",
       room: "Room 9",
@@ -143,7 +157,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.COMM.name,
-      id: MODULES.COMM.subjects.ANGLAIS!.id,
+      id: "5.4",
+      subject: MODULES.COMM.subjects.ANGLAIS!,
       module: MODULES.COMM,
       teacher: "VETTER",
       room: "Room 9",
@@ -153,7 +168,8 @@ const JANUARY_LESSONS: DayLessons = {
   "16/01/2025": [
     {
       name: MODULES.COMM.name,
-      id: MODULES.COMM.subjects.ANGLAIS!.id,
+      id: "5.4",
+      subject: MODULES.COMM.subjects.ANGLAIS!,
       module: MODULES.COMM,
       teacher: "VETTER",
       room: "Room 9",
@@ -161,7 +177,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.ALGO!.id,
+      id: "1.4",
+      subject: MODULES.CULTURE_INFO.subjects.ALGO!,
       module: MODULES.CULTURE_INFO,
       teacher: "REIN",
       room: "Room 7",
@@ -171,7 +188,8 @@ const JANUARY_LESSONS: DayLessons = {
   "17/01/2025": [
     {
       name: MODULES.WEB_DYN.name,
-      id: MODULES.WEB_DYN.subjects.PHP!.id,
+      id: "3.1",
+      subject: MODULES.WEB_DYN.subjects.PHP!,
       module: MODULES.WEB_DYN,
       teacher: "JURKIEWICZ",
       room: "Room 7",
@@ -179,7 +197,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.WEB_DYN.name,
-      id: MODULES.WEB_DYN.subjects.PHP!.id,
+      id: "3.1",
+      subject: MODULES.WEB_DYN.subjects.PHP!,
       module: MODULES.WEB_DYN,
       teacher: "JURKIEWICZ",
       room: "Room 7",
@@ -189,7 +208,8 @@ const JANUARY_LESSONS: DayLessons = {
   "20/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.GRAPHISME!.id,
+      id: "2.2",
+      subject: MODULES.DEV_WEB.subjects.GRAPHISME!,
       module: MODULES.DEV_WEB,
       teacher: "NAAS",
       room: "Room 7",
@@ -197,7 +217,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.GRAPHISME!.id,
+      id: "2.2",
+      subject: MODULES.DEV_WEB.subjects.GRAPHISME!,
       module: MODULES.DEV_WEB,
       teacher: "NAAS",
       room: "Room 7",
@@ -207,7 +228,8 @@ const JANUARY_LESSONS: DayLessons = {
   "21/01/2025": [
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.CYBER!.id,
+      id: "1.3",
+      subject: MODULES.CULTURE_INFO.subjects.CYBER!,
       module: MODULES.CULTURE_INFO,
       teacher: "BENNIS",
       room: "Room 7",
@@ -215,7 +237,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.CYBER!.id,
+      id: "1.3",
+      subject: MODULES.CULTURE_INFO.subjects.CYBER!,
       module: MODULES.CULTURE_INFO,
       teacher: "BENNIS",
       room: "Room 7",
@@ -225,7 +248,8 @@ const JANUARY_LESSONS: DayLessons = {
   "22/01/2025": [
     {
       name: MODULES.GESTION.name,
-      id: MODULES.GESTION.subjects.FINANCE!.id,
+      id: "4.2",
+      subject: MODULES.GESTION.subjects.FINANCE!,
       module: MODULES.GESTION,
       teacher: "HABERMACHER",
       room: "Room 7",
@@ -233,7 +257,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.GESTION.name,
-      id: MODULES.GESTION.subjects.FINANCE!.id,
+      id: "4.2",
+      subject: MODULES.GESTION.subjects.FINANCE!,
       module: MODULES.GESTION,
       teacher: "HABERMACHER",
       room: "Room 7",
@@ -243,7 +268,8 @@ const JANUARY_LESSONS: DayLessons = {
   "23/01/2025": [
     {
       name: MODULES.GESTION.name,
-      id: MODULES.GESTION.subjects.FINANCE!.id,
+      id: "4.2",
+      subject: MODULES.GESTION.subjects.FINANCE!,
       module: MODULES.GESTION,
       teacher: "HABERMACHER",
       room: "Room 7",
@@ -251,7 +277,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.ALGO!.id,
+      id: "1.4",
+      subject: MODULES.CULTURE_INFO.subjects.ALGO!,
       module: MODULES.CULTURE_INFO,
       teacher: "REIN",
       room: "Room 7",
@@ -261,7 +288,8 @@ const JANUARY_LESSONS: DayLessons = {
   "24/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -269,7 +297,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -279,7 +308,8 @@ const JANUARY_LESSONS: DayLessons = {
   "27/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML!,
       module: MODULES.DEV_WEB,
       teacher: "AUER",
       room: "Room 7",
@@ -287,7 +317,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML_TC!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML_TC!,
       module: MODULES.DEV_WEB,
       teacher: "AUER_TC",
       room: "Room 7",
@@ -297,7 +328,8 @@ const JANUARY_LESSONS: DayLessons = {
   "28/01/2025": [
     {
       name: MODULES.DEV_WEB.name,
-      id: MODULES.DEV_WEB.subjects.HTML_TC!.id,
+      id: "2.1",
+      subject: MODULES.DEV_WEB.subjects.HTML_TC!,
       module: MODULES.DEV_WEB,
       teacher: "AUER_TC",
       room: "Room 7",
@@ -305,7 +337,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.COMM.name,
-      id: MODULES.COMM.subjects.EXPR_ECRITE!.id,
+      id: "5.1",
+      subject: MODULES.COMM.subjects.EXPR_ECRITE!,
       module: MODULES.COMM,
       teacher: "WERMELINGER",
       room: "Room 7",
@@ -315,7 +348,8 @@ const JANUARY_LESSONS: DayLessons = {
   "29/01/2025": [
     {
       name: MODULES.GESTION.name,
-      id: MODULES.GESTION.subjects.FINANCE!.id,
+      id: "4.2",
+      subject: MODULES.GESTION.subjects.FINANCE!,
       module: MODULES.GESTION,
       teacher: "HABERMACHER",
       room: "Room 7",
@@ -323,7 +357,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.GESTION.name,
-      id: MODULES.GESTION.subjects.FINANCE!.id,
+      id: "4.2",
+      subject: MODULES.GESTION.subjects.FINANCE!,
       module: MODULES.GESTION,
       teacher: "HABERMACHER",
       room: "Room 7",
@@ -333,7 +368,8 @@ const JANUARY_LESSONS: DayLessons = {
   "30/01/2025": [
     {
       name: MODULES.COMM.name,
-      id: MODULES.COMM.subjects.ANGLAIS!.id,
+      id: "5.4",
+      subject: MODULES.COMM.subjects.ANGLAIS!,
       module: MODULES.COMM,
       teacher: "VETTER",
       room: "Room 9",
@@ -341,7 +377,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.CULTURE_INFO.name,
-      id: MODULES.CULTURE_INFO.subjects.ALGO!.id,
+      id: "1.4",
+      subject: MODULES.CULTURE_INFO.subjects.ALGO!,
       module: MODULES.CULTURE_INFO,
       teacher: "REIN",
       room: "Room 7",
@@ -351,7 +388,8 @@ const JANUARY_LESSONS: DayLessons = {
   "31/01/2025": [
     {
       name: MODULES.WEB_DYN.name,
-      id: MODULES.WEB_DYN.subjects.PHP!.id,
+      id: "3.1",
+      subject: MODULES.WEB_DYN.subjects.PHP!,
       module: MODULES.WEB_DYN,
       teacher: "JURKIEWICZ",
       room: "Room 7",
@@ -359,7 +397,8 @@ const JANUARY_LESSONS: DayLessons = {
     },
     {
       name: MODULES.WEB_DYN.name,
-      id: MODULES.WEB_DYN.subjects.PHP!.id,
+      id: "3.1",
+      subject: MODULES.WEB_DYN.subjects.PHP!,
       module: MODULES.WEB_DYN,
       teacher: "JURKIEWICZ",
       room: "Room 7",
@@ -367,5 +406,3 @@ const JANUARY_LESSONS: DayLessons = {
     }
   ]
 };
-
-export { JANUARY_LESSONS };
