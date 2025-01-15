@@ -1,67 +1,131 @@
 import { ROOMS, TEACHERS } from "#/utils/consts";
+import { Dayjs, dayJS } from "#/utils/day-js";
 import { CommandExecute } from "#/utils/handler/command";
-import { JANUARY_LESSONS } from "#/utils/planning";
-import { EmbedBuilder } from "discord.js";
+import { AllLessons } from "#/utils/planning";
+import { Lesson } from "#/utils/types";
+import { EmbedBuilder, User } from "discord.js";
 
 export const execute: CommandExecute = async (command) => {
-  let dateToShow: Date;
-  const TestRegexDate = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+  await command.deferReply({ flags: ["SuppressNotifications"] });
   
-  const option = command.options.get("date");
+  const next = command.options.get("next")?.value as string;
+  if (next) {
+    return handleNextLesson(command, next);
+  }
   
-  if (option && typeof option.value === "string" && TestRegexDate.test(option.value)) {
-    const [day, month, year] = option.value.split('/').map(Number);
-    dateToShow = new Date(year, month - 1, day);
-  } else {
-    dateToShow = new Date();
+  return handleDateLesson(command);
+};
+
+const handleNextLesson = async (command: any, subjectId: string) => {
+  const now = dayJS();
+  const sortedDates = getSortedDates();
+
+  for (const [date, lessons] of sortedDates) {
+    const lesson = lessons.find(lesson => lesson.subject.id === subjectId);
+    if (!lesson) continue;
+
+    const lessonDate = parseDate(date);
+    if (isUpcomingLesson(lessonDate, lesson.hour, now)) {
+      const embed = createLessonEmbed(
+        `Prochain cours de ${lesson.subject.name}`,
+        [lesson],
+        lessonDate.toDate(),
+        command.user
+      );
+      
+      await command.editReply({ 
+        embeds: [embed], 
+        options: { flags: ["SuppressNotifications"] }
+      });
+      return;
+    }
   }
 
-  const formattedDate = `${dateToShow.getDate().toString().padStart(2, "0")}/${(dateToShow.getMonth() + 1).toString().padStart(2, "0")}/${dateToShow.getFullYear()}`;
-  const lessons = JANUARY_LESSONS[formattedDate];
+  await command.editReply({ 
+    content: "Aucun prochain cours n'est prévu pour cette matière.", 
+    options: { flags: ["SuppressNotifications"] }
+  });
+};
 
-  if (!lessons || lessons.length === 0) {
-    await command.reply({
-      content: "Aucun cours n'est prévu pour cette date.",
-      ephemeral: true
+const handleDateLesson = async (command: any) => {
+  const dateStr = command.options.get("date")?.value as string;
+  const date = getRequestedDate(dateStr);
+  const formattedDate = dayJS(date).format('DD/MM/YYYY');
+  const lessons = AllLessons[formattedDate];
+
+  if (!lessons?.length) {
+    await command.editReply({ 
+      content: "Aucun cours n'est prévu pour cette date.", 
+      options: { flags: ["SuppressNotifications"] }
     });
     return;
   }
 
-  const embed = new EmbedBuilder()
-    .setTitle(`Cours du ${formattedDate}`)
-    .setColor("#6347a0")
-    .setTimestamp(new Date())
-    .setAuthor({
-      name: command.user.displayName,
-      iconURL: command.user.displayAvatarURL()
-    })
-    .addFields(
-      lessons.flatMap((lesson) => {
-        let value = "";
-        value += `Sujet: ${lesson.subject.name}\n`;
-        value += `Professeur: ${TEACHERS[lesson.teacher]}\n`;
-        value += `${ROOMS[lesson.room]}\n`;
+  const embed = createLessonEmbed(
+    `Cours du ${formattedDate}`,
+    lessons,
+    date,
+    command.user
+  );
 
-        const [startHour, startMinute] = lesson.hour.split(" - ")[0].split("h").map(Number);
-        const [endHour, endMinute] = lesson.hour.split(" - ")[1].split("h").map(Number);
-
-        const startTimestamp = new Date(dateToShow);
-        startTimestamp.setHours(startHour, startMinute, 0);
-
-        const endTimestamp = new Date(dateToShow);
-        endTimestamp.setHours(endHour, endMinute, 0);
-
-        value += `Heure: <t:${Math.floor(startTimestamp.getTime() / 1000)}:R> à <t:${Math.floor(endTimestamp.getTime() / 1000)}:R>\n`;
-
-        return [{
-          name: `${lesson.name} (${lesson.id})`,
-          value,
-        }];
-      })
-    );
-
-  await command.reply({
-    embeds: [embed],
-    flags: ["SuppressNotifications"]
+  await command.editReply({ 
+    embeds: [embed], 
+    options: { flags: ["SuppressNotifications"] }
   });
-}
+};
+
+const createLessonEmbed = (title: string, lessons: any[], date: Date, user: User) => {
+  return new EmbedBuilder()
+    .setTitle(title)
+    .setColor("#ffffff")
+    .setTimestamp(new Date())
+    .setFooter({
+      text: user.displayName,
+      iconURL: user.displayAvatarURL()
+    })
+    .addFields(lessons.map(lesson => ({
+      name: `${lesson.name} (${lesson.id})`,
+      value: formatLessonDetails(lesson, date)
+    })));
+};
+
+const formatLessonDetails = (lesson: Lesson, date: Date) => {
+  return [
+    `📚 Matière » **${lesson.subject.name}**`,
+    `🧑‍🏫 Professeur » **${TEACHERS[lesson.teacher]}**`,
+    `🕒 Heure » **${lesson.hour}**`,
+    `🏢 Salle » **${ROOMS[lesson.room]}**`,
+    `📅 Date » <t:${dayJS(date).set('hour', parseInt(lesson.hour.split('h')[0])).unix()}:F>`
+  ].join('\n');
+};
+
+const getSortedDates = () => {
+  return Object.entries(AllLessons)
+    .sort(([dateA], [dateB]) => {
+      const dateObjA = parseDate(dateA);
+      const dateObjB = parseDate(dateB);
+      return dateObjA.valueOf() - dateObjB.valueOf();
+    });
+};
+
+const parseDate = (date: string) => {
+  const [day, month, year] = date.split('/').map(Number);
+  return dayJS(`${year}-${month}-${day}`);
+};
+
+const getRequestedDate = (dateStr?: string) => {
+  const dateRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+  if (dateStr && dateRegex.test(dateStr)) {
+    return parseDate(dateStr).toDate();
+  }
+  return dayJS().toDate();
+};
+
+const isUpcomingLesson = (lessonDate: Dayjs, hour: string, now: Dayjs): boolean => {
+  const [, end] = hour.split(" - ");
+  const [endHour, endMinute] = end.split("h").map(Number);
+  const lessonEnd = now.hour(endHour).minute(endMinute);
+  
+  return lessonDate.isAfter(now, 'day') || 
+         (lessonDate.isSame(now, 'day') && !now.isAfter(lessonEnd));
+};

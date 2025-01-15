@@ -9,3 +9,21 @@ export const slashCommand = new SlashCommandBuilder()
       .setDescription('La date du cours à afficher (format: JJ/MM/AAAA)')
       .setRequired(false)
   )
+  .addStringOption(option =>
+    option
+      .setName("next")
+      .setDescription("Savoir quand est le prochain cours de cette matière.")
+      .setRequired(false)
+      .addChoices([
+        { name: "Les réseaux d'entreprise", value: "1.2" },
+        { name: "La cybersécurité", value: "1.3" },
+        { name: "Algorithmique", value: "1.4" },
+        { name: "HTML/CSS", value: "2.1" },
+        { name: "Graphisme pour le web", value: "2.2" },
+        { name: "JavaScript et JQuerry", value: "2.3" },
+        { name: "Anglais pour l'informatique", value: "5.4" },
+        { name: "Technique d'expression écrite", value: "5.1" },
+        { name: "Éléments financiers du projet", value: "4.2" },
+        { name: "Programmer en PHP", value: "3.1" }
+      ])
+  );
