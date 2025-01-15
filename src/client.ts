@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { Client } from "discord.js";
+import { ActivityType, Client } from "discord.js";
 import { load as loadCommands } from "./utils/handler/command";
 import { sep } from "path";
 import { listener, register } from "./utils/handler/command/command";
@@ -16,6 +16,10 @@ client.on("ready", async (c) => {
 
   listener(c, commands);
   await register(c, builders);
+
+  client.user?.setActivity("le planning", {
+    type: ActivityType.Watching
+  });
   
   console.log("Successfully registered application (/) commands");
 });
