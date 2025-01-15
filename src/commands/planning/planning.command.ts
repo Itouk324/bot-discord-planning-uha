@@ -49,7 +49,17 @@ const handleNextLesson = async (command: any, subjectId: string) => {
 
 const handleDateLesson = async (command: any) => {
   const dateStr = command.options.get("date")?.value as string;
-  const date = getRequestedDate(dateStr);
+  const now = dayJS();
+  let date = getRequestedDate(dateStr);
+  
+  // Si après 16h30 et pas de date spécifiée, afficher les cours de demain
+  const currentTime = now.hour() * 60 + now.minute();
+  const threshold = 16 * 60 + 30; // 16h30 en minutes
+  
+  if (!dateStr && currentTime >= threshold) {
+    date = now.add(1, 'day').toDate();
+  }
+
   const formattedDate = dayJS(date).format('DD/MM/YYYY');
   const lessons = AllLessons[formattedDate];
 
@@ -61,9 +71,12 @@ const handleDateLesson = async (command: any) => {
     return;
   }
 
+  // Regrouper les cours identiques
+  const groupedLessons = groupIdenticalLessons(lessons);
+
   const embed = createLessonEmbed(
     `Cours du ${formattedDate}`,
-    lessons,
+    groupedLessons,
     date,
     command.user
   );
@@ -72,6 +85,22 @@ const handleDateLesson = async (command: any) => {
     embeds: [embed], 
     options: { flags: ["SuppressNotifications"] }
   });
+};
+
+const groupIdenticalLessons = (lessons: Lesson[]) => {
+  const grouped = new Map<string, Lesson>();
+  
+  lessons.forEach(lesson => {
+    const key = `${lesson.subject.id}-${lesson.teacher}-${lesson.room}`;
+    if (grouped.has(key)) {
+      const existingLesson = grouped.get(key)!;
+      existingLesson.hour = "Toute la journée";
+    } else {
+      grouped.set(key, {...lesson});
+    }
+  });
+  
+  return Array.from(grouped.values());
 };
 
 const createLessonEmbed = (title: string, lessons: any[], date: Date, user: User) => {
@@ -90,12 +119,16 @@ const createLessonEmbed = (title: string, lessons: any[], date: Date, user: User
 };
 
 const formatLessonDetails = (lesson: Lesson, date: Date) => {
+  const timeDisplay = lesson.hour === "Toute la journée" 
+    ? "Toute la journée"
+    : `${lesson.hour}`;
+
   return [
     `📚 Matière » **${lesson.subject.name}**`,
     `🧑‍🏫 Professeur » **${TEACHERS[lesson.teacher]}**`,
-    `🕒 Heure » **${lesson.hour}**`,
+    `🕒 Heure » **${timeDisplay}**`,
     `🏢 Salle » **${ROOMS[lesson.room]}**`,
-    `📅 Date » <t:${dayJS(date).set('hour', parseInt(lesson.hour.split('h')[0])).unix()}:F>`
+    `📅 Date » <t:${dayJS(date).set('hour', parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split('h')[0])).unix()}:F>`
   ].join('\n');
 };
 

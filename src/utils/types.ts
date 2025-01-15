@@ -1,4 +1,4 @@
-type Hour = "8h30 - 12h00" | "13h00 - 16h30";
+type Hour = "8h30 - 12h00" | "13h00 - 16h30" | "Toute la journée";
 
 type Hours = {
   MORNING: Hour;
