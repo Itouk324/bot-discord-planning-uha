@@ -406,3 +406,7 @@ export const JANUARY_LESSONS: DayLessons = {
     }
   ]
 };
+
+export const AllLessons = {
+  ...JANUARY_LESSONS
+};
