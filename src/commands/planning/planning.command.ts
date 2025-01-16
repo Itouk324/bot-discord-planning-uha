@@ -52,9 +52,8 @@ const handleDateLesson = async (command: any) => {
   const now = dayJS();
   let date = getRequestedDate(dateStr);
   
-  // Si après 16h30 et pas de date spécifiée, afficher les cours de demain
   const currentTime = now.hour() * 60 + now.minute();
-  const threshold = 16 * 60 + 30; // 16h30 en minutes
+  const threshold = 16 * 60 + 30;
   
   if (!dateStr && currentTime >= threshold) {
     date = now.add(1, 'day').toDate();
@@ -71,7 +70,6 @@ const handleDateLesson = async (command: any) => {
     return;
   }
 
-  // Regrouper les cours identiques
   const groupedLessons = groupIdenticalLessons(lessons);
 
   const embed = createLessonEmbed(
@@ -124,11 +122,11 @@ const formatLessonDetails = (lesson: Lesson, date: Date) => {
     : `${lesson.hour}`;
 
   return [
-    `📚 Matière » **${lesson.subject.name}**`,
-    `🧑‍🏫 Professeur » **${TEACHERS[lesson.teacher]}**`,
-    `🕒 Heure » **${timeDisplay}**`,
-    `🏢 Salle » **${ROOMS[lesson.room]}**`,
-    `📅 Date » <t:${dayJS(date).set('hour', parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split('h')[0])).unix()}:F>`
+    `\`📚\` Matière » **${lesson.subject.name}**`,
+    `\`👨‍🏫\` Professeur » **${TEACHERS[lesson.teacher]}**`,
+    `\`🕒\` Heure » **${timeDisplay}**`,
+    `\`🏢\` Salle » **${ROOMS[lesson.room]}**`,
+    `\`📅\` Date » <t:${dayJS(date).set('hour', parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split('h')[0])).unix()}:F>`
   ].join('\n');
 };
 
