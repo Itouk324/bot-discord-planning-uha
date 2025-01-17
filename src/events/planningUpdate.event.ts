@@ -50,7 +50,11 @@ const sendLessonsMessage = async (channel: TextChannel) => {
         `\`👨‍🏫\` Professeur » **${TEACHERS[lesson.teacher] || lesson.teacher}**`,
         `\`🕒\` Heure » **${timeDisplay}**`,
         `\`🏢\` Salle » **${ROOMS[lesson.room] || lesson.room}**`,
-        `\`📅\` Date » <t:${today.set("hour", parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split("h")[0])).unix()}:F>｜<t:${today.unix()}:R>`,
+
+        `\`📅\` Date » <t:${today
+          .set("hour", parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split("h")[0]))
+          .set("minutes", parseInt(lesson.hour === "Toute la journée" ? "30" : lesson.hour.split("h")[1]))
+          .unix()}:F>`,
       ].join("\n");
 
       embed.addFields({
@@ -75,7 +79,7 @@ const event: Event<Events.ClientReady> = {
       if (isWeekend) return;
 
       const channel = await client.channels.fetch(process.env.LESSONS_CHANNEL_ID ?? "1277735823764357222");
-      
+
       if (channel instanceof TextChannel) {
         await sendLessonsMessage(channel);
       }

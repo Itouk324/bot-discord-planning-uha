@@ -3,7 +3,7 @@ import { Dayjs, dayJS } from "#/utils/day-js";
 import { CommandExecute } from "#/utils/handler/command";
 import { AllLessons } from "#/utils/planning";
 import { Lesson } from "#/utils/types";
-import { EmbedBuilder, User } from "discord.js";
+import { EmbedBuilder, time, User } from "discord.js";
 
 export const execute: CommandExecute = async (command) => {
   await command.deferReply({ flags: ["Ephemeral"] });
@@ -114,12 +114,17 @@ const formatLessonDetails = (lesson: Lesson, date: Date) => {
     ? "Toute la journée"
     : `${lesson.hour}`;
 
+  console.log(timeDisplay)
+
   return [
     `\`📚\` Matière » **${lesson.subject.name}**`,
     `\`👨‍🏫\` Professeur » **${TEACHERS[lesson.teacher]}**`,
     `\`🕒\` Heure » **${timeDisplay}**`,
     `\`🏢\` Salle » **${ROOMS[lesson.room]}**`,
-    `\`📅\` Date » <t:${dayJS(date).set("hour", parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split("h")[0])).unix()}:F>｜<t:${dayJS(date).unix()}:R>`,
+    `\`📅\` Date » <t:${dayJS(date)
+        .set("hour", parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split("h")[0]))
+        .set("minutes", parseInt(lesson.hour === "Toute la journée" ? "30" : lesson.hour.split("h")[1]))
+        .unix()}:F>｜<t:${dayJS(date).unix()}:R>`,
   ].join("\n");
 };
 
