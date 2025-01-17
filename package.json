@@ -4,6 +4,8 @@
     "dev": "npx nodemon --exec node -r @swc-node/register -r tsconfig-paths/register ./src/client.ts dev"
   },
   "dependencies": {
+    "cheerio": "^1.0.0",
+    "cron": "^3.5.0",
     "dayjs": "^1.11.13",
     "discord.js": "^14.17.3",
     "dotenv": "^16.4.7"
