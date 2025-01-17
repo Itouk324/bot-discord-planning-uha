@@ -5,13 +5,13 @@ type Hours = {
   AFTERNOON: Hour;
 };
 
-type Room = "Room 3" | "Room 7" | "Room 9";
+type Room = "Room 3" | "Room 7" | "Room 9" | "Room 4";
 
 type Rooms = {
   [key in Room]: string;
 };
 
-type Teacher = "DOLL" | "AUER" | "AUER_TC" | "VETTER" | "REIN" | "NAAS" | "JURKIEWICZ" | "BENNIS" | "HABERMACHER" | "WERMELINGER";
+type Teacher = "DOLL" | "AUER" | "AUER_TC" | "VETTER" | "REIN" | "REIN_TC" | "NAAS" | "NAAS_TC" | "JURKIEWICZ" | "BENNIS" | "HABERMACHER" | "WERMELINGER" | "FIMBEL" | "TAMAYO" | "EHRHART" | "EHRHART_TC" | "DESSAINT" | "SCHNEIDER_TC";
 
 type Teachers = {
   [key in Teacher]: string;
@@ -22,7 +22,8 @@ type ModuleName =
   "Développement web" |
   "Communication" |
   "Gestion de projets" |
-  "Sites web dynamiques"
+  "Sites web dynamiques" |
+  "Projet fîl rouge"
 ;
 
 type ModuleSubject =
@@ -32,11 +33,18 @@ type ModuleSubject =
   "HTML" |
   "HTML_TC" |
   "JS" |
+  "JS_TC" |
   "GRAPHISME" |
+  "GRAPHISME_TC" |
   "ANGLAIS" |
   "EXPR_ECRITE" |
   "FINANCE" |
-  "PHP"
+  "PHP" |
+  "EXPR_ORALE" |
+  "METHODOLOGIE" |
+  "FIL_ROUGE_TC" |
+  "MYSQL" |
+  "MYSQL_TC"
 ;
 
 type Subject = {
@@ -59,6 +67,7 @@ type Modules = {
   COMM: Module;
   GESTION: Module;
   WEB_DYN: Module;
+  PROJET: Module;
 }
 
 type Lesson = {

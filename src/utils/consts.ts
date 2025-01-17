@@ -7,6 +7,7 @@ const HOURS: Hours = {
 
 const ROOMS: Rooms = {
   "Room 3": "Salle 3",
+  "Room 4": "Salle 4",
   "Room 7": "Salle 7",
   "Room 9": "Salle 9"
 };
@@ -17,11 +18,19 @@ const TEACHERS: Teachers = {
   AUER_TC: "Pascal AUER (TC)",
   VETTER: "Oriane VETTER",
   REIN: "Valentine REIN",
+  REIN_TC: "Valentine REIN (TC)",
   NAAS: "Jonathan NAAS",
+  NAAS_TC: "Jonathan NAAS (TC)",
   JURKIEWICZ: "Pierre JURKIEWICZ",
   BENNIS: "Ismail BENNIS",
   HABERMACHER: "Benjamin HABERMACHER",
-  WERMELINGER: "Emmanuelle WERMELINGER"
+  WERMELINGER: "Emmanuelle WERMELINGER",
+  FIMBEL: "Sabrina FIMBEL",
+  TAMAYO: "Carlos TAMAYO CAPILLAS",
+  EHRHART: "Christel EHRHART",
+  EHRHART_TC: "Christel EHRHART (TC)",
+  DESSAINT: "Baptiste DESSAINT",
+  SCHNEIDER_TC: "Grégory SCHNEIDER (TC)"
 };
 
 const MODULES: Modules = {
@@ -41,7 +50,8 @@ const MODULES: Modules = {
       HTML: { name: "HTML/CSS", id: "2.1" },
       HTML_TC: { name: "HTML/CSS (TC)", id: "2.1" },
       GRAPHISME: { name: "Graphisme pour le web", id: "2.2" },
-      JS: { name: "JavaScript et JQuerry", id: "2.3" }
+      JS: { name: "JavaScript et JQuerry", id: "2.3" },
+      JS_TC: { name: "JavaScript et JQuerry (TC)", id: "2.3" }
     }
   },
   COMM: {
@@ -49,21 +59,35 @@ const MODULES: Modules = {
     id: "5",
     subjects: {
       ANGLAIS: { name: "Anglais pour l'informatique", id: "5.4" },
-      EXPR_ECRITE: { name: "Technique d'expression écrite", id: "5.1" }
+      EXPR_ECRITE: { name: "Technique d'expression écrite", id: "5.1" },
+      EXPR_ORALE: { name: "Expression orale", id: "5.2" }
     }
   },
   GESTION: {
     name: "Gestion de projets",
     id: "4",
     subjects: {
-      FINANCE: { name: "Éléments financiers du projet", id: "4.2" }
+      FINANCE: { name: "Éléments financiers du projet", id: "4.2" },
+      METHODOLOGIE: { name: "Méthodologie de gestion de projets", id: "4.1" }
     }
   },
   WEB_DYN: {
-    name: "Sites web dynamiques",
-    id: "3",
+    name: "Développement web",
+    id: "2",
     subjects: {
-      PHP: { name: "Programmer en PHP", id: "3.1" }
+      HTML: { name: "HTML/CSS", id: "2.1" },
+      HTML_TC: { name: "HTML/CSS (TC)", id: "2.1" },
+      GRAPHISME: { name: "Graphisme pour le web", id: "2.2" },
+      GRAPHISME_TC: { name: "Graphisme pour le web (TC)", id: "2.2" },
+      MYSQL: { name: "Conception et utilisation de bases de données MySQL", id: "3.2" },
+      MYSQL_TC: { name: "Conception et utilisation de bases de données MySQL (TC)", id: "3.2" }
+    }
+  },
+  PROJET: {
+    name: "Projet fîl rouge",
+    id: "6",
+    subjects: {
+      FIL_ROUGE_TC: { name: "Projet fil rouge (TC)", id: "6.1" }
     }
   }
 };
