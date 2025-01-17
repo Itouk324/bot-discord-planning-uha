@@ -9,10 +9,10 @@ interface MenuItem {
   items: string[];
 }
 
-let cachedMenu: MenuItem[] | null = null;
-let lastFetchDate: string | null = null;
+export let cachedMenu: MenuItem[] | null = null;
+export let lastFetchDate: string | null = null;
 
-const extractMenu = (html: string): MenuItem[] => {
+export const extractMenu = (html: string): MenuItem[] => {
   const $ = cheerio.load(html);
   const menu: MenuItem[] = [];
   
@@ -40,7 +40,7 @@ const extractMenu = (html: string): MenuItem[] => {
   return menu;
 };
 
-const fetchMenu = async (): Promise<MenuItem[]> => {
+export const fetchMenu = async (): Promise<MenuItem[]> => {
   try {
     const response = await fetch('https://www.crous-strasbourg.fr/restaurant/resto-u-de-lillberg-2/');
     const html = await response.text();
@@ -51,7 +51,7 @@ const fetchMenu = async (): Promise<MenuItem[]> => {
   }
 };
 
-const updateMenuCache = async () => {
+export const updateMenuCache = async () => {
   try {
     const currentDate = new Date().toDateString();
     if (currentDate !== lastFetchDate) {
@@ -63,11 +63,6 @@ const updateMenuCache = async () => {
     console.error('Erreur lors de la mise à jour du cache:', error);
   }
 };
-
-const cronJob = new CronJob('0 0 * * *', updateMenuCache);
-cronJob.start();
-
-updateMenuCache();
 
 export const execute: CommandExecute = async (command) => {
   await command.deferReply({
