@@ -114,8 +114,6 @@ const formatLessonDetails = (lesson: Lesson, date: Date) => {
     ? "Toute la journée"
     : `${lesson.hour}`;
 
-  console.log(timeDisplay)
-
   return [
     `\`📚\` Matière » **${lesson.subject.name}**`,
     `\`👨‍🏫\` Professeur » **${TEACHERS[lesson.teacher]}**`,
