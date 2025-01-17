@@ -16,7 +16,7 @@ const sendMenuMessage = async (channel: TextChannel) => {
 
     const embed = new EmbedBuilder()
       .setTitle("🍽️ Menu du jour - Resto U de l'Illberg")
-      .setDescription("Le tarif social est **3.30€**, et le tarif du menu brasserie est **4.70€** HT / (5.17€ TTC)")
+      .setDescription("Le tarif social est **3.30€**, et le tarif du menu brasserie est **4.70€ HT** / (5.17€ TTC)")
       .setColor("#e01021")
       .setTimestamp(new Date())
       .setThumbnail("https://cdn.discordapp.com/emojis/1329888316488941640.webp?size=128&quality=lossless")
@@ -25,14 +25,14 @@ const sendMenuMessage = async (channel: TextChannel) => {
     for (const item of cachedMenu) {
       embed.addFields({
         name: item.category,
-        value: item.items.join('\n'),
+        value: item.items.join("\n"),
         inline: false
       });
     }
 
     await channel.send({ embeds: [embed] });
   } catch (error) {
-    console.error('Error while sending menu:', error);
+    console.error("Error while sending menu:", error);
   }
 };
 
@@ -40,7 +40,7 @@ const event: Event<Events.ClientReady> = {
   name: Events.ClientReady,
   once: true,
   execute: async (client) => {
-    const cronJob = new CronJob('0 10 * * *', async () => {
+    const cronJob = new CronJob("0 10 * * *", async () => {
       const isWeekend = [0, 6].includes(dayJS().day());
       if (isWeekend) return;
 

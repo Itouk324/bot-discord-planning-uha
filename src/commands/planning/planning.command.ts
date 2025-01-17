@@ -20,11 +20,13 @@ const handleNextLesson = async (command: any, subjectId: string) => {
   const now = dayJS();
   const sortedDates = getSortedDates();
 
-  for (const [date, lessons] of sortedDates) {
-    const lesson = lessons.find(lesson => lesson.subject.id === subjectId);
+  for (const [date, dayLessons] of sortedDates) {
+    const lesson = dayLessons.find(lesson => lesson.subject?.id === subjectId);
+    
     if (!lesson) continue;
 
     const lessonDate = parseDate(date);
+    
     if (isUpcomingLesson(lessonDate, lesson.hour, now)) {
       const embed = createLessonEmbed(
         `Prochain cours de ${lesson.subject.name}`,
@@ -32,7 +34,7 @@ const handleNextLesson = async (command: any, subjectId: string) => {
         lessonDate.toDate(),
         command.user
       );
-      
+
       await command.editReply({ embeds: [embed] });
       return;
     }
@@ -50,10 +52,10 @@ const handleDateLesson = async (command: any) => {
   const threshold = 16 * 60 + 30;
   
   if (!dateStr && currentTime >= threshold) {
-    date = now.add(1, 'day').toDate();
+    date = now.add(1, "day").toDate();
   }
 
-  const formattedDate = dayJS(date).format('DD/MM/YYYY');
+  const formattedDate = dayJS(date).format("DD/MM/YYYY");
   const lessons = AllLessons[formattedDate];
 
   if (!lessons?.length) {
@@ -117,8 +119,8 @@ const formatLessonDetails = (lesson: Lesson, date: Date) => {
     `\`👨‍🏫\` Professeur » **${TEACHERS[lesson.teacher]}**`,
     `\`🕒\` Heure » **${timeDisplay}**`,
     `\`🏢\` Salle » **${ROOMS[lesson.room]}**`,
-    `\`📅\` Date » <t:${dayJS(date).set('hour', parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split('h')[0])).unix()}:F>`
-  ].join('\n');
+    `\`📅\` Date » <t:${dayJS(date).set("hour", parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split("h")[0])).unix()}:F>｜<t:${dayJS(date).unix()}:R>`,
+  ].join("\n");
 };
 
 const getSortedDates = () => {
@@ -131,7 +133,7 @@ const getSortedDates = () => {
 };
 
 const parseDate = (date: string) => {
-  const [day, month, year] = date.split('/').map(Number);
+  const [day, month, year] = date.split("/").map(Number);
   return dayJS(`${year}-${month}-${day}`);
 };
 
@@ -148,6 +150,6 @@ const isUpcomingLesson = (lessonDate: Dayjs, hour: string, now: Dayjs): boolean 
   const [endHour, endMinute] = end.split("h").map(Number);
   const lessonEnd = now.hour(endHour).minute(endMinute);
   
-  return lessonDate.isAfter(now, 'day') || 
-         (lessonDate.isSame(now, 'day') && !now.isAfter(lessonEnd));
+  return lessonDate.isAfter(now, "day") || 
+         (lessonDate.isSame(now, "day") && !now.isAfter(lessonEnd));
 };
