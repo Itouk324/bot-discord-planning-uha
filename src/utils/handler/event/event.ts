@@ -10,11 +10,11 @@ export const loadEvents = async (client: Client, eventsFolder: string): Promise<
     const eventModule = await import(`${eventsFolder}${sep}${file}`);
     const event = eventModule.default as Event<any>;
 
-    // if (event.once) {
-    //   client.once(event.name, (...args) => event.execute(...args));
-    // } else {
+    if (event.once) {
+      client.once(event.name, (...args) => event.execute(...args));
+    } else {
       client.on(event.name, (...args) => event.execute(...args));
-    // }
+    }
 
     console.log(`Loaded event: ${event.name}`);
   }

@@ -64,21 +64,21 @@ export const load = async (commandsFolder: string): Promise<LoadedCommands> => {
         const subCommandGroupFolder = `${subCommandDirName}${sep}${subCommandGroupDirNamePrefix}${commandOption.name}${sep}`;
 
         if (!existsSync(`${path}${subCommandGroupFolder}`) || !statSync(`${path}${subCommandGroupFolder}`).isDirectory()) {
-          throw new Error(`"${commandOption.name}" SubCommandGroup folder doesn't exist`);
+          throw new Error(`"${commandOption.name}" SubCommandGroup folder doesn"t exist`);
         }
 
         for (const subCommandGroupOption of commandOption.options) {
           const subCommandFileName = `${commandOption.name}-${subCommandGroupOption.name}.command.ts`;
 
           if (!existsSync(`${path}${builderFileName}`)) {
-            throw new Error(`"${subCommandFileName}" file can't be found in \`${subCommandGroupFolder}\``);
+            throw new Error(`"${subCommandFileName}" file can"t be found in \`${subCommandGroupFolder}\``);
           }
 
           const dynamicSubCommand = await import(`${path}${subCommandGroupFolder}${subCommandFileName}`);
 
           const execute: CommandExecute = dynamicSubCommand.execute;
           if (!execute) {
-            throw new Error(`${subCommandFileName} doesn't have "execute" function`);
+            throw new Error(`${subCommandFileName} doesn"t have "execute" function`);
           }
 
           commands.set(serializeCommandName(builder.name, subCommandGroupOption.name, commandOption.name), execute);
@@ -89,14 +89,14 @@ export const load = async (commandsFolder: string): Promise<LoadedCommands> => {
           const subCommandFileName = `${commandOption.name}.command.ts`;
 
           if (!existsSync(`${path}${subCommandDirName}${sep}${subCommandFileName}`)) {
-            throw new Error(`"${subCommandFileName}" file can't be found in \`${subCommandDirName}\``);
+            throw new Error(`"${subCommandFileName}" file can"t be found in \`${subCommandDirName}\``);
           }
 
           const dynamicCommandImport = await import(`${path}${subCommandDirName}${sep}${subCommandFileName}`);
           const execute: CommandExecute = dynamicCommandImport.execute;
 
           if (!execute) {
-            throw new Error(`${subCommandFileName} doesn't have "execute" function`);
+            throw new Error(`${subCommandFileName} doesn"t have "execute" function`);
           }
 
           commands.set(serializeCommandName(builder.name, commandOption.name), execute);
