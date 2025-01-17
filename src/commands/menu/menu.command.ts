@@ -82,8 +82,10 @@ export const execute: CommandExecute = async (command) => {
     const embed = new EmbedBuilder()
       .setTitle("🍽️ Menu du jour - Resto U de l'Illberg")
       .setDescription("Le tarif social est **3.30€**, et le tarif du menu brasserie est **4.70€** HT / (5.17€ TTC)")
-      .setColor("#0099ff")
+      .setColor("#e01021")
       .setTimestamp(new Date())
+      .setThumbnail("https://cdn.discordapp.com/emojis/1329888316488941640.webp?size=128&quality=lossless")
+      .setFooter({ text: "Crous Strasbourg" })
       .setFooter({
         text: command.user.displayName,
         iconURL: command.user.displayAvatarURL()
