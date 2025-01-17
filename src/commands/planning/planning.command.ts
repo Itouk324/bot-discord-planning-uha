@@ -6,7 +6,7 @@ import { Lesson } from "#/utils/types";
 import { EmbedBuilder, User } from "discord.js";
 
 export const execute: CommandExecute = async (command) => {
-  await command.deferReply({ flags: ["SuppressNotifications"] });
+  await command.deferReply({ flags: ["Ephemeral"] });
   
   const next = command.options.get("next")?.value as string;
   if (next) {
@@ -33,18 +33,12 @@ const handleNextLesson = async (command: any, subjectId: string) => {
         command.user
       );
       
-      await command.editReply({ 
-        embeds: [embed], 
-        options: { flags: ["SuppressNotifications"] }
-      });
+      await command.editReply({ embeds: [embed] });
       return;
     }
   }
 
-  await command.editReply({ 
-    content: "Aucun prochain cours n'est prévu pour cette matière.", 
-    options: { flags: ["SuppressNotifications"] }
-  });
+  await command.editReply({ content: "Aucun prochain cours n'est prévu pour cette matière." });
 };
 
 const handleDateLesson = async (command: any) => {
@@ -79,10 +73,7 @@ const handleDateLesson = async (command: any) => {
     command.user
   );
 
-  await command.editReply({ 
-    embeds: [embed], 
-    options: { flags: ["SuppressNotifications"] }
-  });
+  await command.editReply({ embeds: [embed] });
 };
 
 const groupIdenticalLessons = (lessons: Lesson[]) => {

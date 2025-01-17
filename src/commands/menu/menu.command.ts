@@ -70,7 +70,9 @@ cronJob.start();
 updateMenuCache();
 
 export const execute: CommandExecute = async (command) => {
-  await command.deferReply();
+  await command.deferReply({
+    flags: ["Ephemeral"]
+  });
 
   try {
     if (!cachedMenu) {
