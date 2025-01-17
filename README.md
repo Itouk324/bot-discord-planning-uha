@@ -30,4 +30,4 @@ MEAL_CHANNEL_ID=""
 LESSONS_CHANNEL_ID=""
 ```
 
-![image](https://github.com/user-attachments/assets/89e65d88-f4e0-48a4-ba8b-fe848671ed48)
+![image](https://github.com/user-attachments/assets/b55a98bc-57e8-4bdb-b26f-efffee981c15)
