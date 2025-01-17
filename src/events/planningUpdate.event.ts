@@ -18,7 +18,6 @@ const sendLessonsMessage = async (channel: TextChannel) => {
       return;
     }
 
-    // Grouper les cours identiques (même matière, prof et salle)
     const groupedLessons = new Map<string, Lesson>();
     lessons.forEach(lesson => {
       if (!lesson?.subject?.name || !lesson.teacher || !lesson.room) {
@@ -41,7 +40,6 @@ const sendLessonsMessage = async (channel: TextChannel) => {
       .setTimestamp(new Date())
       .setFooter({ text: "Planning automatique" });
 
-    // Ajouter les cours à l"embed
     for (const lesson of groupedLessons.values()) {
       const timeDisplay = lesson.hour === "Toute la journée" 
         ? "Toute la journée"
