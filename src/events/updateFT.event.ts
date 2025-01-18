@@ -23,7 +23,7 @@ const event: Event<Events.ClientReady> = {
       const reminderDate = nextMonth.date(15);    
 
       try {
-        const channel = await client.channels.fetch("1316834470871175235");
+        const channel = await client.channels.fetch(process.env.INFO_REMINDER_FRT ?? "1328479405659394141");
 
         if (channel instanceof TextChannel) {
           const embed = new EmbedBuilder()

@@ -47,7 +47,7 @@ const event: Event<Events.ClientReady> = {
       if (isWeekend) return;
 
       console.log("Il est 10h, je vais chercher le menu du jour");
-      const channel = await client.channels.fetch(process.env.MEAL_CHANNEL_ID ?? "1277735823764357222");
+      const channel = await client.channels.fetch(process.env.MEAL_CHANNEL_ID ?? "1328479405659394141");
       
       if (channel instanceof TextChannel) {
         await sendMenuMessage(channel);
