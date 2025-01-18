@@ -6,5 +6,7 @@ export type EventExecute<K extends keyof ClientEvents> = (...args: ClientEvents[
 export interface Event<K extends keyof ClientEvents> {
   name: K;
   once?: boolean;
+  eventName?: string;
+  description?: string;
   execute: EventExecute<K>;
 }
