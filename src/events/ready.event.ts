@@ -7,6 +7,8 @@ import { sep } from "path";
 const event: Event<Events.ClientReady> = {
   name: Events.ClientReady,
   once: true,
+  eventName: "Ready",
+  description: "Lorsque le bot est prêt, enregistre les commandes et les écoute.",
   execute: async (client: Client<true>) => {
     const { commands, builders } = await loadCommands(`${__dirname}${sep}..${sep}commands`);
 

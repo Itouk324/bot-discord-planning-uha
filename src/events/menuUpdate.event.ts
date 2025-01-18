@@ -39,6 +39,8 @@ const sendMenuMessage = async (channel: TextChannel) => {
 const event: Event<Events.ClientReady> = {
   name: Events.ClientReady,
   once: true,
+  eventName: "Menu du jour",
+  description: "Envoie le menu du jour à 10h du matin (sauf le week-end).",
   execute: async (client) => {
     const cronJob = new CronJob("0 10 * * *", async () => {
       const isWeekend = [0, 6].includes(dayJS().day());
@@ -55,7 +57,7 @@ const event: Event<Events.ClientReady> = {
     cronJob.start();
     await updateMenuCache();
 
-    console.log("Successfully registered application (/) commands");
+    console.log("Successfully registered menu notification system");
   }
 };
 

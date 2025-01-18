@@ -73,6 +73,8 @@ const sendLessonsMessage = async (channel: TextChannel) => {
 const event: Event<Events.ClientReady> = {
   name: Events.ClientReady,
   once: true,
+  eventName: "Emploi du temps",
+  description: "Envoie l'emploi du temps du jour à 8h du matin (sauf le week-end).",
   execute: async (client) => {
     const cronJob = new CronJob("0 6 * * *", async () => {
       const isWeekend = [0, 6].includes(dayJS().day());
