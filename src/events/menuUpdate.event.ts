@@ -45,8 +45,8 @@ const event: Event<Events.ClientReady> = {
     const cronJob = new CronJob("0 10 * * *", async () => {
       const isWeekend = [0, 6].includes(dayJS().day());
       if (isWeekend) return;
-
-      console.log("Il est 10h, je vais chercher le menu du jour");
+      
+      await updateMenuCache();
       const channel = await client.channels.fetch(process.env.MEAL_CHANNEL_ID ?? "1328479405659394141");
       
       if (channel instanceof TextChannel) {
@@ -55,7 +55,6 @@ const event: Event<Events.ClientReady> = {
     }, null, null, "Europe/Paris");
 
     cronJob.start();
-    await updateMenuCache();
 
     console.log("Successfully registered menu notification system");
   }
