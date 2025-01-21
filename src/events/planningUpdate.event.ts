@@ -49,12 +49,7 @@ const sendLessonsMessage = async (channel: TextChannel) => {
         `\`📚\` Matière » **${lesson.subject.name}**`,
         `\`👨‍🏫\` Professeur » **${TEACHERS[lesson.teacher] || lesson.teacher}**`,
         `\`🕒\` Heure » **${timeDisplay}**`,
-        `\`🏢\` Salle » **${ROOMS[lesson.room] || lesson.room}**`,
-
-        `\`📅\` Date » <t:${today
-          .set("hour", parseInt(lesson.hour === "Toute la journée" ? "8" : lesson.hour.split("h")[0]))
-          .set("minutes", parseInt(lesson.hour === "Toute la journée" ? "30" : lesson.hour.split("h")[1]))
-          .unix()}:F>`,
+        `\`🏢\` Salle » **${ROOMS[lesson.room] || lesson.room}**`
       ].join("\n");
 
       embed.addFields({
