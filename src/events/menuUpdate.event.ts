@@ -42,7 +42,7 @@ const event: Event<Events.ClientReady> = {
   eventName: "Menu du jour",
   description: "Envoie le menu du jour à 10h du matin (sauf le week-end).",
   execute: async (client) => {
-    const cronJob = new CronJob("0 10 * * *", async () => {
+    const cronJob = new CronJob("0 8 * * *", async () => {
       const isWeekend = [0, 6].includes(dayJS().day());
       if (isWeekend) return;
       
