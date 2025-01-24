@@ -3,7 +3,7 @@ import { Dayjs, dayJS } from "#/utils/day-js";
 import { CommandExecute } from "#/utils/handler/command";
 import { AllLessons } from "#/utils/planning";
 import { Lesson } from "#/utils/types";
-import { EmbedBuilder, time, User } from "discord.js";
+import { EmbedBuilder, User } from "discord.js";
 
 export const execute: CommandExecute = async (command) => {
   await command.deferReply({ flags: ["Ephemeral"] });
