@@ -15,8 +15,6 @@ export const slashCommand = new SlashCommandBuilder()
       .setDescription("Savoir quand est le prochain cours de cette matière.")
       .setRequired(false)
       .addChoices([
-        { name: "Les réseaux d'entreprise", value: "1.2" },
-        { name: "La cybersécurité", value: "1.3" },
         { name: "Algorithmique", value: "1.4" },
         { name: "HTML/CSS", value: "2.1" },
         { name: "Graphisme pour le web", value: "2.2" },
