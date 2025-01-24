@@ -118,6 +118,7 @@ const formatLessonDetails = (lesson: Lesson, date: Date) => {
     `\`📚\` Matière » **${lesson.subject.name}**`,
     `\`👨‍🏫\` Professeur » **${TEACHERS[lesson.teacher]}**`,
     `\`🕒\` Heure » **${timeDisplay}**`,
+    `\`📅\` Date » **${dayJS(date).format("DD/MM/YYYY")}**`,
     `\`🏢\` Salle » **${ROOMS[lesson.room]}**`
   ].join("\n");
 };
